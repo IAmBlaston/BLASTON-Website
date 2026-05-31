@@ -9,518 +9,193 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
   <style>
-    /* =====================
-       RESET & BASE
-    ===================== */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body {
-      background: #0a0a0a;
-      color: #e8e8e8;
-      font-family: 'Space Grotesk', sans-serif;
-      min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
-    }
+    body { background: #0a0a0a; color: #e8e8e8; font-family: 'Space Grotesk', sans-serif; min-height: 100vh; -webkit-font-smoothing: antialiased; }
 
-    /* =====================
-       NAVIGATION
-    ===================== */
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 14px 40px;
-      border-bottom: 0.5px solid #2a2a2a;
-      background: #0a0a0a;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    .nav-brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      cursor: pointer;
-      text-decoration: none;
-    }
-    .nav-skull {
-      width: 30px;
-      height: 30px;
-      object-fit: contain;
-      opacity: 0.85;
-    }
-    /* ⚠️ REPLACE the src below with the path to your skull icon */
-    /* e.g. src="assets/SKULL_01.png" */
-    .nav-logo-text {
-      font-family: 'Space Mono', monospace;
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: 4px;
-      color: #fff;
-    }
-    .nav-links {
-      display: flex;
-      gap: 24px;
-      flex-wrap: wrap;
-    }
-    .nav-links a {
-      font-size: 11px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #555;
-      text-decoration: none;
-      cursor: pointer;
-      transition: color 0.2s;
-      font-family: 'Space Mono', monospace;
-    }
+    /* NAV */
+    .nav { display: flex; align-items: center; justify-content: center; padding: 14px 40px; border-bottom: 0.5px solid #333; background: #0a0a0a; position: sticky; top: 0; z-index: 100; gap: 28px; }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #777; text-decoration: none; cursor: pointer; transition: color 0.2s; font-family: 'Space Mono', monospace; }
     .nav-links a:hover { color: #fff; }
     .nav-links a.active { color: #fff; }
-
-    /* Hamburger (mobile) */
-    .nav-hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      padding: 4px;
-    }
-    .nav-hamburger span {
-      display: block;
-      width: 22px;
-      height: 1px;
-      background: #888;
-      transition: all 0.3s;
-    }
-    .nav-mobile-menu {
-      display: none;
-      flex-direction: column;
-      background: #0a0a0a;
-      border-bottom: 0.5px solid #1e1e1e;
-      padding: 16px 40px;
-      gap: 18px;
-    }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .nav-hamburger span { display: block; width: 22px; height: 1px; background: #888; transition: all 0.3s; }
+    .nav-mobile-menu { display: none; flex-direction: column; background: #0a0a0a; border-bottom: 0.5px solid #1e1e1e; padding: 16px 40px; gap: 18px; }
     .nav-mobile-menu.open { display: flex; }
-    .nav-mobile-menu a {
-      font-size: 12px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #555;
-      text-decoration: none;
-      font-family: 'Space Mono', monospace;
-      transition: color 0.2s;
-    }
+    .nav-mobile-menu a { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #777; text-decoration: none; font-family: 'Space Mono', monospace; transition: color 0.2s; }
     .nav-mobile-menu a:hover, .nav-mobile-menu a.active { color: #fff; }
 
-    /* =====================
-       VIEWS
-    ===================== */
+    /* VIEWS */
     .view { display: none; }
     .view.active { display: block; }
 
-    /* =====================
-       SHARED LAYOUT
-    ===================== */
-    .section-inner {
-      padding: 48px 40px;
-      max-width: 860px;
-      margin: 0 auto;
-    }
-    .section-label {
-      font-size: 10px;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: #444;
-      font-family: 'Space Mono', monospace;
-      margin-bottom: 40px;
-      border-bottom: 0.5px solid #1e1e1e;
-      padding-bottom: 16px;
-    }
+    /* LAYOUT */
+    .section-inner { padding: 48px 40px; max-width: 860px; margin: 0 auto; }
+    .section-label { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: #666; font-family: 'Space Mono', monospace; margin-bottom: 40px; border-bottom: 0.5px solid #222; padding-bottom: 16px; }
 
-    /* =====================
-       BUTTONS
-    ===================== */
-    .btn-p {
-      padding: 11px 26px;
-      border: 0.5px solid #fff;
-      background: transparent;
-      color: #fff;
-      font-family: 'Space Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s;
-    }
+    /* BUTTONS */
+    .btn-p { padding: 11px 26px; border: 0.5px solid #fff; background: transparent; color: #fff; font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: background 0.2s, color 0.2s; }
     .btn-p:hover { background: #fff; color: #0a0a0a; }
-    .btn-s {
-      padding: 11px 26px;
-      border: 0.5px solid #2a2a2a;
-      background: transparent;
-      color: #555;
-      font-family: 'Space Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .btn-s:hover { border-color: #555; color: #aaa; }
+    .btn-s { padding: 11px 26px; border: 0.5px solid #444; background: transparent; color: #777; font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.2s; }
+    .btn-s:hover { border-color: #777; color: #bbb; }
 
-    /* =====================
-       HERO
-    ===================== */
-    .hero {
-      min-height: 420px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 80px 40px;
-      border-bottom: 0.5px solid #1a1a1a;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 50% 60%, #161616 0%, #0a0a0a 70%);
-    }
-    .hero-logo {
-      position: relative;
-      width: 320px;
-      max-width: 80%;
-      margin-bottom: 24px;
-    }
-    /* ⚠️ REPLACE src with your logo path, e.g. assets/LOGO_02.png */
-    .hero-tagline {
-      position: relative;
-      font-size: 11px;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: #444;
-      font-family: 'Space Mono', monospace;
-      margin-bottom: 20px;
-    }
-    .hero-desc {
-      position: relative;
-      max-width: 480px;
-      font-size: 14px;
-      line-height: 1.85;
-      color: #666;
-      margin-bottom: 36px;
-    }
-    .hero-btns {
-      position: relative;
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
+    /* HERO */
+    .hero { min-height: 420px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 80px 40px; border-bottom: 0.5px solid #1a1a1a; position: relative; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 60%, #161616 0%, #0a0a0a 70%); }
+    .hero-welcome { position: relative; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: #666; margin-bottom: 20px; }
+    .hero-logo { position: relative; width: 320px; max-width: 80%; margin-bottom: 24px; }
+    .hero-tagline { position: relative; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: #666; font-family: 'Space Mono', monospace; margin-bottom: 20px; }
+    .hero-desc { position: relative; max-width: 480px; font-size: 14px; line-height: 1.85; color: #888; }
 
-    /* =====================
-       ABOUT
-    ===================== */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      align-items: start;
-    }
-    .about-text { font-size: 14px; line-height: 1.9; color: #777; }
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+    .about-text { font-size: 14px; line-height: 1.9; color: #999; }
     .about-text p { margin-bottom: 16px; }
-    .about-identity {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-      padding: 32px;
-      border: 0.5px solid #1a1a1a;
-    }
+    .about-identity { display: flex; flex-direction: column; align-items: center; gap: 20px; padding: 32px; border: 0.5px solid #222; }
     .about-skull { width: 80px; opacity: 0.7; }
     .about-wordmark { width: 170px; opacity: 0.5; }
-    .stat-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 0;
-      border-bottom: 0.5px solid #1a1a1a;
-      width: 100%;
-    }
-    .stat-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #444; font-family: 'Space Mono', monospace; }
-    .stat-val { font-family: 'Space Mono', monospace; font-size: 11px; color: #666; }
+    .stat-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 0.5px solid #222; width: 100%; }
+    .stat-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #666; font-family: 'Space Mono', monospace; }
+    .stat-val { font-family: 'Space Mono', monospace; font-size: 11px; color: #888; }
 
-    /* =====================
-       DISCOGRAPHY
-    ===================== */
+    /* DISCOGRAPHY */
     .disco-list { display: flex; flex-direction: column; }
-    .disco-row {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      padding: 18px 0;
-      border-bottom: 0.5px solid #1a1a1a;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
+    .disco-row { display: flex; align-items: center; gap: 20px; padding: 18px 0; border-bottom: 0.5px solid #1a1a1a; cursor: pointer; transition: all 0.2s; }
     .disco-row:hover { padding-left: 6px; }
     .disco-row:hover .disco-title { color: #fff; }
-    .disco-cover { width: 56px; height: 56px; flex-shrink: 0; overflow: hidden; border: 0.5px solid #1e1e1e; }
+    .disco-cover { width: 56px; height: 56px; flex-shrink: 0; overflow: hidden; border: 0.5px solid #222; }
     .disco-cover img { width: 100%; height: 100%; object-fit: cover; }
     .disco-info { flex: 1; }
-    .disco-title { font-size: 14px; font-weight: 500; color: #bbb; margin-bottom: 4px; transition: color 0.2s; }
-    .disco-meta { font-size: 10px; letter-spacing: 1px; color: #3a3a3a; text-transform: uppercase; font-family: 'Space Mono', monospace; }
+    .disco-title { font-size: 14px; font-weight: 500; color: #ccc; margin-bottom: 4px; transition: color 0.2s; }
+    .disco-meta { font-size: 10px; letter-spacing: 1px; color: #555; text-transform: uppercase; font-family: 'Space Mono', monospace; }
     .disco-right { display: flex; align-items: center; gap: 10px; }
-    .tag { font-size: 10px; letter-spacing: 1px; padding: 3px 9px; border: 0.5px solid #222; color: #444; text-transform: uppercase; font-family: 'Space Mono', monospace; }
-    .arrow { color: #2a2a2a; font-size: 15px; transition: color 0.2s; }
-    .disco-row:hover .arrow { color: #777; }
+    .tag { font-size: 10px; letter-spacing: 1px; padding: 3px 9px; border: 0.5px solid #333; color: #666; text-transform: uppercase; font-family: 'Space Mono', monospace; }
+    .arrow { color: #444; font-size: 15px; transition: color 0.2s; }
+    .disco-row:hover .arrow { color: #999; }
 
-    /* =====================
-       RELEASE PAGE
-    ===================== */
-    .release-back {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 10px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #444;
-      font-family: 'Space Mono', monospace;
-      cursor: pointer;
-      margin-bottom: 36px;
-      transition: color 0.2s;
-    }
+    /* RELEASE PAGE */
+    .release-back { display: flex; align-items: center; gap: 8px; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #666; font-family: 'Space Mono', monospace; cursor: pointer; margin-bottom: 36px; transition: color 0.2s; }
     .release-back:hover { color: #ccc; }
-    .release-hero {
-      display: grid;
-      grid-template-columns: 200px 1fr;
-      gap: 36px;
-      align-items: start;
-      margin-bottom: 32px;
-    }
-    .release-cover { width: 200px; height: 200px; overflow: hidden; border: 0.5px solid #1e1e1e; }
+    .release-hero { display: grid; grid-template-columns: 200px 1fr; gap: 36px; align-items: start; margin-bottom: 32px; }
+    .release-cover { width: 200px; height: 200px; overflow: hidden; border: 0.5px solid #222; }
     .release-cover img { width: 100%; height: 100%; object-fit: cover; }
-    .release-type { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #3a3a3a; font-family: 'Space Mono', monospace; margin-bottom: 10px; }
+    .release-type { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #555; font-family: 'Space Mono', monospace; margin-bottom: 10px; }
     .release-title { font-family: 'Space Mono', monospace; font-size: 24px; font-weight: 700; color: #fff; margin-bottom: 6px; line-height: 1.2; }
-    .release-artist { font-size: 11px; color: #444; letter-spacing: 3px; text-transform: uppercase; font-family: 'Space Mono', monospace; margin-bottom: 16px; }
-    .release-credits { font-size: 12px; color: #333; line-height: 1.7; }
+    .release-artist { font-size: 11px; color: #666; letter-spacing: 3px; text-transform: uppercase; font-family: 'Space Mono', monospace; margin-bottom: 16px; }
+    .release-credits { font-size: 12px; color: #555; line-height: 1.7; }
     .stats-row { display: flex; gap: 2px; margin-bottom: 28px; }
     .stat-box { flex: 1; background: #0f0f0f; border: 0.5px solid #1a1a1a; padding: 12px 14px; }
-    .stat-num { font-family: 'Space Mono', monospace; font-size: 18px; color: #bbb; margin-bottom: 3px; }
-    .stat-lbl { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #333; }
-    .player-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #333; font-family: 'Space Mono', monospace; margin-bottom: 10px; }
+    .stat-num { font-family: 'Space Mono', monospace; font-size: 18px; color: #ccc; margin-bottom: 3px; }
+    .stat-lbl { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #555; }
+    .player-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #555; font-family: 'Space Mono', monospace; margin-bottom: 10px; }
     .sc-embed { width: 100%; border: 0.5px solid #1a1a1a; margin-bottom: 28px; }
-    .links-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #333; font-family: 'Space Mono', monospace; margin-bottom: 14px; border-top: 0.5px solid #1a1a1a; padding-top: 20px; }
-    .platform-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 0.5px solid #111; cursor: pointer; transition: padding-left 0.2s; }
+    .links-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #555; font-family: 'Space Mono', monospace; margin-bottom: 14px; border-top: 0.5px solid #1a1a1a; padding-top: 20px; }
+    .platform-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 0.5px solid #161616; cursor: pointer; transition: padding-left 0.2s; }
     .platform-row:hover { padding-left: 6px; }
     .platform-row:hover .pname { color: #fff; }
-    .pname { font-size: 13px; color: #777; transition: color 0.2s; }
-    .plink { font-size: 10px; color: #2a2a2a; font-family: 'Space Mono', monospace; text-transform: uppercase; }
+    .pname { font-size: 13px; color: #888; transition: color 0.2s; }
+    .plink { font-size: 10px; color: #444; font-family: 'Space Mono', monospace; text-transform: uppercase; }
 
-    /* =====================
-       ARTWORK
-    ===================== */
-    .art-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
-    .art-item {
-      aspect-ratio: 1;
-      background: #0f0f0f;
-      border: 0.5px solid #1a1a1a;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: border-color 0.2s;
-      position: relative;
-      overflow: hidden;
-    }
-    .art-item:hover { border-color: #444; }
+    /* ARTWORK */
+    .art-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
+    .art-item { aspect-ratio: 1; background: #0f0f0f; border: 0.5px solid #1a1a1a; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: border-color 0.2s; position: relative; overflow: hidden; }
+    .art-item:hover { border-color: #555; }
     .art-item img { width: 100%; height: 100%; object-fit: cover; }
-    .art-item .art-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.6);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
+    .art-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s; }
     .art-item:hover .art-overlay { opacity: 1; }
-    .art-overlay-text { font-size: 10px; letter-spacing: 2px; color: #aaa; font-family: 'Space Mono', monospace; text-transform: uppercase; }
-    .art-num { font-family: 'Space Mono', monospace; font-size: 10px; color: #222; }
+    .art-overlay-text { font-size: 10px; letter-spacing: 2px; color: #bbb; font-family: 'Space Mono', monospace; text-transform: uppercase; }
+    .art-num { font-family: 'Space Mono', monospace; font-size: 10px; color: #333; }
 
-    /* =====================
-       STORE
-    ===================== */
-    .store-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-bottom: 40px; }
+    /* STORE */
+    .store-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; margin-bottom: 40px; }
     .store-item { background: #0d0d0d; border: 0.5px solid #1a1a1a; overflow: hidden; }
-    .store-item-img {
-      width: 100%;
-      aspect-ratio: 1;
-      background: #111;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      border-bottom: 0.5px solid #1a1a1a;
-    }
-    .store-item-img img { width: 100%; height: 100%; object-fit: cover; }
+    .store-item-img { width: 100%; aspect-ratio: 1; background: #111; display: flex; align-items: center; justify-content: center; position: relative; border-bottom: 0.5px solid #1a1a1a; }
     .store-item-skull { width: 48px; opacity: 0.08; }
-    .store-badge {
-      position: absolute;
-      top: 10px; right: 10px;
-      font-family: 'Space Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      background: #0a0a0a;
-      border: 0.5px solid #2a2a2a;
-      color: #444;
-      padding: 3px 8px;
-    }
+    .store-badge { position: absolute; top: 10px; right: 10px; font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; background: #0a0a0a; border: 0.5px solid #333; color: #555; padding: 3px 8px; }
     .store-item-info { padding: 16px; }
-    .store-item-name { font-size: 13px; color: #777; margin-bottom: 6px; font-weight: 500; }
-    .store-item-type { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #333; margin-bottom: 12px; }
-    .store-item-price { font-family: 'Space Mono', monospace; font-size: 13px; color: #555; margin-bottom: 14px; }
-    .store-notify-btn {
-      width: 100%;
-      padding: 9px;
-      border: 0.5px solid #222;
-      background: transparent;
-      color: #444;
-      font-family: 'Space Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .store-notify-btn:hover { border-color: #555; color: #aaa; }
-    .store-info-box {
-      border: 0.5px solid #1a1a1a;
-      padding: 28px 32px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-    .store-info-text { font-size: 13px; color: #444; line-height: 1.7; max-width: 480px; }
-    .store-info-text strong { color: #666; font-weight: 500; }
-    .store-platform-logo { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 3px; color: #2a2a2a; text-transform: uppercase; white-space: nowrap; }
+    .store-item-name { font-size: 13px; color: #888; margin-bottom: 6px; font-weight: 500; }
+    .store-item-type { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #555; margin-bottom: 12px; }
+    .store-item-price { font-family: 'Space Mono', monospace; font-size: 13px; color: #666; margin-bottom: 14px; }
+    .store-notify-btn { width: 100%; padding: 9px; border: 0.5px solid #333; background: transparent; color: #666; font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.2s; }
+    .store-notify-btn:hover { border-color: #666; color: #bbb; }
+    .store-info-box { border: 0.5px solid #1a1a1a; padding: 28px 32px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .store-info-text { font-size: 13px; color: #666; line-height: 1.7; max-width: 480px; }
+    .store-info-text strong { color: #888; font-weight: 500; }
+    .store-platform-logo { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 3px; color: #444; text-transform: uppercase; white-space: nowrap; }
 
-    /* =====================
-       GAMING
-    ===================== */
+    /* GAMING */
     .placeholder-box { border: 0.5px solid #1a1a1a; padding: 60px 40px; text-align: center; }
-    .placeholder-icon { font-size: 36px; color: #1e1e1e; margin-bottom: 16px; }
-    .placeholder-title { font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 3px; color: #2a2a2a; text-transform: uppercase; margin-bottom: 10px; }
-    .placeholder-desc { font-size: 13px; color: #252525; line-height: 1.7; }
+    .placeholder-icon { font-size: 36px; color: #333; margin-bottom: 16px; }
+    .placeholder-title { font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 3px; color: #444; text-transform: uppercase; margin-bottom: 10px; }
+    .placeholder-desc { font-size: 13px; color: #444; line-height: 1.7; }
 
-    /* =====================
-       DOWNLOADS
-    ===================== */
-    .dl-toolbar {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 2px;
-      padding: 8px 12px;
-      background: #0f0f0f;
-      border: 0.5px solid #1e1e1e;
-      border-bottom: none;
-    }
+    /* DOWNLOADS */
+    .dl-toolbar { display: flex; align-items: center; gap: 8px; margin-bottom: 2px; padding: 8px 12px; background: #0f0f0f; border: 0.5px solid #222; border-bottom: none; }
     .dl-table { width: 100%; border-collapse: collapse; font-family: 'Space Mono', monospace; font-size: 12px; }
-    .dl-table thead tr { background: #0f0f0f; border: 0.5px solid #1e1e1e; }
-    .dl-table thead th { padding: 9px 12px; text-align: left; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #444; font-weight: 400; border-right: 0.5px solid #1a1a1a; }
+    .dl-table thead tr { background: #0f0f0f; border: 0.5px solid #222; }
+    .dl-table thead th { padding: 9px 12px; text-align: left; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #666; font-weight: 400; border-right: 0.5px solid #1a1a1a; }
     .dl-table thead th:last-child { border-right: none; }
     .dl-table tbody tr { border-bottom: 0.5px solid #141414; cursor: pointer; transition: background 0.15s; }
     .dl-table tbody tr:hover { background: #111; }
-    .dl-table tbody td { padding: 10px 12px; color: #666; border-right: 0.5px solid #111; vertical-align: middle; }
+    .dl-table tbody td { padding: 10px 12px; color: #777; border-right: 0.5px solid #111; vertical-align: middle; }
     .dl-table tbody td:last-child { border-right: none; }
-    .dl-table tbody tr.folder td { color: #888; }
+    .dl-table tbody tr.folder td { color: #999; }
     .file-icon { display: flex; align-items: center; gap: 10px; }
-    .breadcrumb { display: flex; align-items: center; gap: 6px; font-family: 'Space Mono', monospace; font-size: 11px; color: #444; margin-bottom: 16px; flex-wrap: wrap; }
+    .breadcrumb { display: flex; align-items: center; gap: 6px; font-family: 'Space Mono', monospace; font-size: 11px; color: #666; margin-bottom: 16px; flex-wrap: wrap; }
     .breadcrumb span { cursor: pointer; transition: color 0.2s; }
     .breadcrumb span:hover { color: #ccc; }
-    .breadcrumb .sep { color: #2a2a2a; }
-    .breadcrumb .current { color: #777; cursor: default; }
-    .dl-info { font-size: 11px; color: #333; font-family: 'Space Mono', monospace; margin-top: 12px; padding-top: 12px; border-top: 0.5px solid #141414; }
+    .breadcrumb .sep { color: #444; }
+    .breadcrumb .current { color: #888; cursor: default; }
+    .dl-info { font-size: 11px; color: #555; font-family: 'Space Mono', monospace; margin-top: 12px; padding-top: 12px; border-top: 0.5px solid #1a1a1a; }
 
-    /* =====================
-       FOOTER
-    ===================== */
+    /* FOOTER */
     .footer-wrap { border-top: 0.5px solid #1a1a1a; }
     .footer { padding: 48px 40px; max-width: 860px; margin: 0 auto; }
-    .footer-skull { width: 32px; opacity: 0.18; margin-bottom: 24px; }
-    .newsletter-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #333; font-family: 'Space Mono', monospace; margin-bottom: 12px; }
+    .footer-skull { width: 32px; opacity: 0.25; margin-bottom: 24px; }
+    .newsletter-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #555; font-family: 'Space Mono', monospace; margin-bottom: 12px; }
     .newsletter-row { display: flex; max-width: 400px; margin-bottom: 40px; }
-    .nl-input { flex: 1; padding: 11px 14px; background: #0f0f0f; border: 0.5px solid #222; border-right: none; color: #aaa; font-family: 'Space Grotesk', sans-serif; font-size: 13px; outline: none; }
-    .nl-input::placeholder { color: #2e2e2e; }
-    .nl-btn { padding: 11px 18px; background: transparent; border: 0.5px solid #222; color: #555; font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
-    .nl-btn:hover { border-color: #777; color: #ccc; }
+    .nl-input { flex: 1; padding: 11px 14px; background: #0f0f0f; border: 0.5px solid #333; border-right: none; color: #bbb; font-family: 'Space Grotesk', sans-serif; font-size: 13px; outline: none; }
+    .nl-input::placeholder { color: #444; }
+    .nl-btn { padding: 11px 18px; background: transparent; border: 0.5px solid #333; color: #666; font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+    .nl-btn:hover { border-color: #888; color: #ccc; }
     .footer-bottom { display: flex; justify-content: space-between; align-items: center; }
-    .footer-wordmark { height: 18px; opacity: 0.12; }
+    .footer-wordmark { height: 18px; opacity: 0.2; }
     .social-links { display: flex; gap: 20px; }
-    .social-links a { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #2e2e2e; text-decoration: none; cursor: pointer; font-family: 'Space Mono', monospace; transition: color 0.2s; }
-    .social-links a:hover { color: #777; }
+    .social-links a { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #444; text-decoration: none; cursor: pointer; font-family: 'Space Mono', monospace; transition: color 0.2s; }
+    .social-links a:hover { color: #888; }
 
-    /* =====================
-       MOBILE RESPONSIVE
-    ===================== */
+    /* MOBILE */
     @media (max-width: 700px) {
-      .nav { padding: 14px 20px; }
+      .nav { padding: 14px 20px; justify-content: space-between; }
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
       .nav-mobile-menu { padding: 16px 20px; }
-
       .hero { padding: 60px 24px; min-height: 360px; }
       .hero-logo { width: 240px; }
-      .hero-btns { flex-direction: column; align-items: center; }
-      .btn-p, .btn-s { width: 100%; max-width: 280px; text-align: center; }
-
       .section-inner { padding: 36px 20px; }
-
       .about-grid { grid-template-columns: 1fr; gap: 28px; }
       .about-identity { padding: 24px; }
-
       .release-hero { grid-template-columns: 1fr; gap: 20px; }
       .release-cover { width: 100%; height: auto; aspect-ratio: 1; }
       .release-title { font-size: 20px; }
-
       .store-grid { grid-template-columns: 1fr 1fr; }
       .store-info-box { flex-direction: column; gap: 12px; }
-
-      .art-grid { grid-template-columns: repeat(2, 1fr); }
-
-      .dl-table thead th:nth-child(3),
-      .dl-table tbody td:nth-child(3),
-      .dl-table thead th:nth-child(4),
-      .dl-table tbody td:nth-child(4) { display: none; }
-
+      .art-grid { grid-template-columns: repeat(2,1fr); }
+      .dl-table thead th:nth-child(3), .dl-table tbody td:nth-child(3),
+      .dl-table thead th:nth-child(4), .dl-table tbody td:nth-child(4) { display: none; }
       .footer { padding: 36px 20px; }
       .footer-bottom { flex-direction: column; gap: 20px; align-items: flex-start; }
       .social-links { flex-wrap: wrap; gap: 16px; }
-
-      .stats-row { flex-wrap: wrap; }
-      .stat-box { min-width: 120px; }
     }
-
     @media (max-width: 420px) {
       .store-grid { grid-template-columns: 1fr; }
-      .art-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
 <body>
 
-<!-- ===================== NAVBAR ===================== -->
 <nav class="nav">
-  <div class="nav-brand" onclick="showSection('home')">
-    <!-- ⚠️ Replace src with your actual image path, e.g. assets/SKULL_01.png -->
-    <img class="nav-skull" src="assets/SKULL_01.png" alt="Blaston skull icon">
-    <span class="nav-logo-text">BLASTON</span>
-  </div>
   <div class="nav-links">
     <a id="nav-home" class="active" onclick="showSection('home')">Home</a>
     <a id="nav-disco" onclick="showSection('disco')">Discography</a>
@@ -529,7 +204,7 @@
     <a id="nav-gaming" onclick="showSection('gaming')">Gaming</a>
     <a id="nav-dl" onclick="showSection('downloads')">Downloads</a>
   </div>
-  <div class="nav-hamburger" onclick="toggleMobileMenu()" id="hamburger">
+  <div class="nav-hamburger" onclick="toggleMobileMenu()">
     <span></span><span></span><span></span>
   </div>
 </nav>
@@ -542,26 +217,21 @@
   <a onclick="showSection('downloads');closeMobileMenu()">Downloads</a>
 </div>
 
-<!-- ===================== HOME ===================== -->
+<!-- HOME -->
 <div id="sec-home" class="view active">
   <div class="hero">
     <div class="hero-bg"></div>
-    <!-- ⚠️ Replace src with your actual image path, e.g. assets/LOGO_02.png -->
+    <div class="hero-welcome">Welcome traveller!</div>
+    <!-- ⚠️ Replace src with: assets/LOGO_02.png -->
     <img class="hero-logo" src="assets/LOGO_02.png" alt="BLASTON">
-    <div class="hero-tagline">Dubstep · Heavy Bass · Dark Ambient · Soundtrack</div>
-    <div class="hero-desc">Dark, atmospheric soundscapes where bass meets silence — and silence hits back.</div>
-    <div class="hero-btns">
-      <button class="btn-p" onclick="showSection('disco')">Discography</button>
-      <button class="btn-s" onclick="showSection('store')">Store</button>
-      <!-- ⚠️ Replace # with your actual Spotify artist URL -->
-      <button class="btn-s" onclick="window.open('#')">Spotify</button>
-    </div>
+    <div class="hero-tagline">Heavy Bass · Dark Ambient · Artwork</div>
+    <div class="hero-desc">I create all kinds of shit content on my computer.</div>
   </div>
   <div class="section-inner">
     <div class="section-label">// About</div>
     <div class="about-grid">
       <div class="about-text">
-        <!-- ⚠️ Edit this bio text to your liking -->
+        <!-- ⚠️ Edit bio here -->
         <p>BLASTON is an electronic music and art project living on the edge of darkness and atmosphere. Dubstep, heavy bass, and dark ambient sounds blend into cinematic textures.</p>
         <p>The goal isn't just music — it's the transfer of a feeling. Brooding, nostalgic, yet powerful.</p>
       </div>
@@ -578,42 +248,32 @@
   </div>
 </div>
 
-<!-- ===================== DISCOGRAPHY ===================== -->
+<!-- DISCOGRAPHY -->
 <div id="sec-disco" class="view">
   <div class="section-inner">
     <div class="section-label">// Discography</div>
-    <div class="disco-list" id="disco-list">
-      <!-- ⚠️ Add or edit releases here. Copy a .disco-row block to add more. -->
-      <!-- Each row calls showRelease('release-id') — match the id in the JS releases object below -->
+    <div class="disco-list">
+      <!-- ⚠️ Add new releases here — copy a disco-row block and edit values -->
       <div class="disco-row" onclick="showRelease('loading-screen')">
         <div class="disco-cover"><img src="https://i1.sndcdn.com/artworks-LTJFPg0MOXZDiFo3-dLWhyQ-t500x500.jpg" alt="Loading Screen"></div>
-        <div class="disco-info">
-          <div class="disco-title">Loading Screen</div>
-          <div class="disco-meta">2016 · Single · Dubstep</div>
-        </div>
+        <div class="disco-info"><div class="disco-title">Loading Screen</div><div class="disco-meta">2016 · Single · Dubstep</div></div>
         <div class="disco-right"><span class="tag">6.9K plays</span><i class="ti ti-arrow-right arrow"></i></div>
       </div>
       <div class="disco-row" onclick="showRelease('big-riddim')">
         <div class="disco-cover"><img src="https://i1.sndcdn.com/artworks-zuhMUE0znPDGqt7z-kqFnRQ-t500x500.jpg" alt="Big Riddim Martian"></div>
-        <div class="disco-info">
-          <div class="disco-title">Big Riddim Martian (Blaston Remix)</div>
-          <div class="disco-meta">2016 · Remix · Dubstep</div>
-        </div>
+        <div class="disco-info"><div class="disco-title">Big Riddim Martian (Blaston Remix)</div><div class="disco-meta">2016 · Remix · Dubstep</div></div>
         <div class="disco-right"><span class="tag">363 plays</span><i class="ti ti-arrow-right arrow"></i></div>
       </div>
       <div class="disco-row" onclick="showRelease('dont-die-now')">
         <div class="disco-cover"><img src="https://i1.sndcdn.com/artworks-veN73RXBQmdVWKtt-VhZwyA-t500x500.jpg" alt="Don't Die Now"></div>
-        <div class="disco-info">
-          <div class="disco-title">Don't Die Now</div>
-          <div class="disco-meta">2016 · Single · Dubstep</div>
-        </div>
+        <div class="disco-info"><div class="disco-title">Don't Die Now</div><div class="disco-meta">2016 · Single · Dubstep</div></div>
         <div class="disco-right"><span class="tag">266 plays</span><i class="ti ti-arrow-right arrow"></i></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ===================== RELEASE PAGE ===================== -->
+<!-- RELEASE PAGE -->
 <div id="sec-release" class="view">
   <div class="section-inner">
     <div class="release-back" onclick="showSection('disco')"><i class="ti ti-arrow-left"></i> Back to Discography</div>
@@ -621,16 +281,16 @@
   </div>
 </div>
 
-<!-- ===================== ARTWORK ===================== -->
+<!-- ARTWORK -->
 <div id="sec-art" class="view">
   <div class="section-inner">
     <div class="section-label">// Artwork</div>
-    <div class="art-grid" id="art-grid">
-      <!-- ⚠️ Replace art-num placeholders with actual <img> tags pointing to your artwork files -->
-      <!-- Example: <div class="art-item" onclick="window.open('YOUR_ARTSTATION_POST_URL')">
-                     <img src="assets/artwork/cover_001.jpg" alt="Title">
-                     <div class="art-overlay"><span class="art-overlay-text">View on ArtStation</span></div>
-                   </div> -->
+    <div class="art-grid">
+      <!-- ⚠️ Replace art-num placeholders with actual images:
+           <div class="art-item" onclick="window.open('YOUR_ARTSTATION_URL')">
+             <img src="assets/artwork/cover_001.jpg" alt="Title">
+             <div class="art-overlay"><span class="art-overlay-text">View on ArtStation</span></div>
+           </div> -->
       <div class="art-item"><div class="art-num">001</div></div>
       <div class="art-item"><div class="art-num">002</div></div>
       <div class="art-item"><div class="art-num">003</div></div>
@@ -641,60 +301,33 @@
   </div>
 </div>
 
-<!-- ===================== STORE ===================== -->
+<!-- STORE -->
 <div id="sec-store" class="view">
   <div class="section-inner">
     <div class="section-label">// Store</div>
     <div class="store-grid">
-      <!-- ⚠️ When Fourthwall is ready, replace store-item-skull with product images
-           and replace notify buttons with Fourthwall embed/link buttons -->
+      <!-- ⚠️ When Fourthwall is ready, replace skull images with product photos -->
       <div class="store-item">
-        <div class="store-item-img">
-          <img class="store-item-skull" src="assets/SKULL_01.png" alt="">
-          <span class="store-badge">Coming Soon</span>
-        </div>
-        <div class="store-item-info">
-          <div class="store-item-name">BLASTON T-Shirt Vol. 1</div>
-          <div class="store-item-type">Apparel · Unisex</div>
-          <div class="store-item-price">— / —</div>
-          <button class="store-notify-btn" onclick="notifyMe(this)">Notify Me</button>
-        </div>
+        <div class="store-item-img"><img class="store-item-skull" src="assets/SKULL_01.png" alt=""><span class="store-badge">Coming Soon</span></div>
+        <div class="store-item-info"><div class="store-item-name">BLASTON T-Shirt Vol. 1</div><div class="store-item-type">Apparel · Unisex</div><div class="store-item-price">— / —</div><button class="store-notify-btn" onclick="notifyMe(this)">Notify Me</button></div>
       </div>
       <div class="store-item">
-        <div class="store-item-img">
-          <img class="store-item-skull" src="assets/SKULL_01.png" alt="">
-          <span class="store-badge">Coming Soon</span>
-        </div>
-        <div class="store-item-info">
-          <div class="store-item-name">BLASTON T-Shirt Vol. 2</div>
-          <div class="store-item-type">Apparel · Unisex</div>
-          <div class="store-item-price">— / —</div>
-          <button class="store-notify-btn" onclick="notifyMe(this)">Notify Me</button>
-        </div>
+        <div class="store-item-img"><img class="store-item-skull" src="assets/SKULL_01.png" alt=""><span class="store-badge">Coming Soon</span></div>
+        <div class="store-item-info"><div class="store-item-name">BLASTON T-Shirt Vol. 2</div><div class="store-item-type">Apparel · Unisex</div><div class="store-item-price">— / —</div><button class="store-notify-btn" onclick="notifyMe(this)">Notify Me</button></div>
       </div>
       <div class="store-item">
-        <div class="store-item-img">
-          <img class="store-item-skull" src="assets/SKULL_01.png" alt="">
-          <span class="store-badge">Coming Soon</span>
-        </div>
-        <div class="store-item-info">
-          <div class="store-item-name">BLASTON Poster</div>
-          <div class="store-item-type">Print · A2 / A3</div>
-          <div class="store-item-price">— / —</div>
-          <button class="store-notify-btn" onclick="notifyMe(this)">Notify Me</button>
-        </div>
+        <div class="store-item-img"><img class="store-item-skull" src="assets/SKULL_01.png" alt=""><span class="store-badge">Coming Soon</span></div>
+        <div class="store-item-info"><div class="store-item-name">BLASTON Poster</div><div class="store-item-type">Print · A2 / A3</div><div class="store-item-price">— / —</div><button class="store-notify-btn" onclick="notifyMe(this)">Notify Me</button></div>
       </div>
     </div>
     <div class="store-info-box">
-      <div class="store-info-text">
-        The BLASTON store is currently in development. <strong>Sign up for the newsletter</strong> to be the first to know when merch drops — limited runs only.
-      </div>
+      <div class="store-info-text">The BLASTON store is currently in development. <strong>Sign up for the newsletter</strong> to be the first to know when merch drops — limited runs only.</div>
       <div class="store-platform-logo">Powered by<br>Fourthwall</div>
     </div>
   </div>
 </div>
 
-<!-- ===================== GAMING ===================== -->
+<!-- GAMING -->
 <div id="sec-gaming" class="view">
   <div class="section-inner">
     <div class="section-label">// Gaming</div>
@@ -706,14 +339,14 @@
   </div>
 </div>
 
-<!-- ===================== DOWNLOADS ===================== -->
+<!-- DOWNLOADS -->
 <div id="sec-downloads" class="view">
   <div class="section-inner">
     <div class="section-label">// Downloads</div>
     <div class="breadcrumb" id="breadcrumb"></div>
     <div class="dl-toolbar">
-      <i class="ti ti-folder" style="font-size:13px;color:#333;"></i>
-      <span style="font-family:'Space Mono',monospace;font-size:11px;color:#555;" id="dl-path-display">BLASTON</span>
+      <i class="ti ti-folder" style="font-size:13px;color:#555;"></i>
+      <span style="font-family:'Space Mono',monospace;font-size:11px;color:#666;" id="dl-path-display">BLASTON</span>
     </div>
     <table class="dl-table">
       <thead><tr>
@@ -729,20 +362,20 @@
   </div>
 </div>
 
-<!-- ===================== FOOTER ===================== -->
+<!-- FOOTER -->
 <div class="footer-wrap">
   <div class="footer">
     <img class="footer-skull" src="assets/SKULL_01.png" alt="">
     <div class="newsletter-label">Newsletter</div>
     <div class="newsletter-row">
-      <!-- ⚠️ Replace action="#" with your Brevo embed form action URL -->
+      <!-- ⚠️ Replace with your Brevo form action URL -->
       <input class="nl-input" type="email" placeholder="your@email.com" id="nl-email">
       <button class="nl-btn" onclick="handleNewsletter()">Subscribe</button>
     </div>
     <div class="footer-bottom">
       <img class="footer-wordmark" src="assets/LOGO_02.png" alt="BLASTON">
       <div class="social-links">
-        <!-- ⚠️ Replace # with your actual social media URLs -->
+        <!-- ⚠️ Replace # with your actual URLs -->
         <a href="#" target="_blank">Spotify</a>
         <a href="https://soundcloud.com/blaston" target="_blank">SoundCloud</a>
         <a href="#" target="_blank">Instagram</a>
@@ -756,18 +389,13 @@
   /* =====================================================================
      RELEASES DATA
      ⚠️ To add a new release:
-     1. Add a new entry to the `releases` object below
-     2. Add a new .disco-row block in the HTML above
-     3. Make sure the key matches the onclick showRelease('key')
+     1. Add entry to `releases` object below
+     2. Add a .disco-row block in the Discography HTML above
   ===================================================================== */
   const releases = {
     'loading-screen': {
-      title: 'Loading Screen',
-      type: 'Single',
-      year: '2016',
-      genre: 'Dubstep',
-      plays: '6,941',
-      likes: '181',
+      title: 'Loading Screen', type: 'Single', year: '2016', genre: 'Dubstep',
+      plays: '6,941', likes: '181',
       cover: 'https://i1.sndcdn.com/artworks-LTJFPg0MOXZDiFo3-dLWhyQ-t500x500.jpg',
       scTrackId: '277956028',
       credits: 'Written, produced, mixed & mastered by Blaston. Artwork by Blaston.',
@@ -777,12 +405,8 @@
       ]
     },
     'big-riddim': {
-      title: 'Big Riddim Martian (Blaston Remix)',
-      type: 'Remix',
-      year: '2016',
-      genre: 'Dubstep',
-      plays: '363',
-      likes: '14',
+      title: 'Big Riddim Martian (Blaston Remix)', type: 'Remix', year: '2016', genre: 'Dubstep',
+      plays: '363', likes: '14',
       cover: 'https://i1.sndcdn.com/artworks-zuhMUE0znPDGqt7z-kqFnRQ-t500x500.jpg',
       scTrackId: '270186563',
       credits: 'Original by Dodge & Fuski, 12th Planet. Remixed & mastered by Blaston. Artwork by Blaston.',
@@ -792,12 +416,8 @@
       ]
     },
     'dont-die-now': {
-      title: "Don't Die Now",
-      type: 'Single',
-      year: '2016',
-      genre: 'Dubstep',
-      plays: '266',
-      likes: '10',
+      title: "Don't Die Now", type: 'Single', year: '2016', genre: 'Dubstep',
+      plays: '266', likes: '10',
       cover: 'https://i1.sndcdn.com/artworks-veN73RXBQmdVWKtt-VhZwyA-t500x500.jpg',
       scTrackId: '246053226',
       credits: 'Written, produced, mixed & mastered by Blaston. Artwork by Blaston.',
@@ -806,15 +426,13 @@
         { name: 'Fanlink / Download', url: 'https://blaston.fanlink.tv/DontDieNow' }
       ]
     }
-    /* ⚠️ ADD NEW RELEASES HERE — copy the block above and edit the values */
+    /* ⚠️ ADD NEW RELEASES HERE */
   };
 
   /* =====================================================================
      DOWNLOADS FILE SYSTEM
-     ⚠️ To add a new release folder:
-     1. Add a new entry to the `releases` array in fsData
-     2. Add a new key to fsData with the folder contents
-     3. Update pathNames with the new key and display name
+     ⚠️ To add a new release folder, add entry to `releases` array
+     and add a new key with file contents
   ===================================================================== */
   const fsData = {
     root: [
@@ -844,8 +462,7 @@
       { name: 'Promo', type: 'folder', date: '2024-01-01', size: '—', children: 'art-promo' },
       { name: 'Logos', type: 'folder', date: '2024-01-01', size: '—', children: 'art-logos' }
     ],
-    'art-covers': [],
-    'art-promo': [],
+    'art-covers': [], 'art-promo': [],
     'art-logos': [
       { name: 'BLASTON_LOGO_02.png', type: 'image', date: '2024-01-01', size: '1.2 MB', url: '#' },
       { name: 'BLASTON_SKULL_01.png', type: 'image', date: '2024-01-01', size: '0.9 MB', url: '#' }
@@ -858,10 +475,8 @@
     'rel-bigriddim': 'Big Riddim Martian (Remix)',
     'art-covers': 'Covers', 'art-promo': 'Promo', 'art-logos': 'Logos'
   };
-
   let currentPath = ['root'];
 
-  /* ---- Navigation ---- */
   function showSection(id) {
     document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
     document.querySelectorAll('.nav-links a, .nav-mobile-menu a').forEach(a => a.classList.remove('active'));
@@ -872,14 +487,9 @@
     window.scrollTo(0, 0);
   }
 
-  function toggleMobileMenu() {
-    document.getElementById('mobile-menu').classList.toggle('open');
-  }
-  function closeMobileMenu() {
-    document.getElementById('mobile-menu').classList.remove('open');
-  }
+  function toggleMobileMenu() { document.getElementById('mobile-menu').classList.toggle('open'); }
+  function closeMobileMenu() { document.getElementById('mobile-menu').classList.remove('open'); }
 
-  /* ---- Release page ---- */
   function showRelease(id) {
     const r = releases[id];
     const platforms = r.platforms.map(p =>
@@ -911,33 +521,28 @@
     showSection('release');
   }
 
-  /* ---- Downloads ---- */
   function renderDownloads() {
     const key = currentPath[currentPath.length - 1];
     const items = fsData[key] || [];
     document.getElementById('breadcrumb').innerHTML = currentPath.map((p, i) => {
       const isLast = i === currentPath.length - 1;
-      return (isLast
-        ? `<span class="current">${pathNames[p]}</span>`
-        : `<span onclick="navToIndex(${i})">${pathNames[p]}</span>`) +
+      return (isLast ? `<span class="current">${pathNames[p]}</span>` : `<span onclick="navToIndex(${i})">${pathNames[p]}</span>`) +
         (isLast ? '' : '<span class="sep"> / </span>');
     }).join('');
     document.getElementById('dl-path-display').textContent = currentPath.map(p => pathNames[p]).join(' \\ ');
     const tbody = document.getElementById('dl-tbody');
     if (!items.length) {
-      tbody.innerHTML = `<tr><td colspan="5" style="padding:24px 12px;color:#2a2a2a;text-align:center;font-size:11px;letter-spacing:2px;">EMPTY FOLDER</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="5" style="padding:24px 12px;color:#444;text-align:center;font-size:11px;letter-spacing:2px;">EMPTY FOLDER</td></tr>`;
     } else {
       tbody.innerHTML = items.map(item => {
         const icon = item.type === 'folder' ? 'ti-folder' : item.type === 'audio' ? 'ti-music' : 'ti-photo';
         const cls = item.type === 'folder' ? 'folder' : '';
         const onclick = item.type === 'folder' ? `navToFolder('${item.children}')` : item.url && item.url !== '#' ? `window.open('${item.url}','_blank')` : '';
-        const action = item.type === 'folder' ? 'Open' : 'Download';
         return `<tr class="${cls}" onclick="${onclick}">
-          <td><div class="file-icon"><i class="ti ${icon}" style="font-size:14px;color:#333;"></i>${item.name}</div></td>
-          <td style="color:#2e2e2e">${item.date}</td>
-          <td style="color:#2e2e2e">${item.size}</td>
-          <td style="color:#2e2e2e;text-transform:uppercase;font-size:10px">${item.type}</td>
-          <td style="font-size:10px;color:#333;letter-spacing:1px;">${action}</td>
+          <td><div class="file-icon"><i class="ti ${icon}" style="font-size:14px;color:#555;"></i>${item.name}</div></td>
+          <td>${item.date}</td><td>${item.size}</td>
+          <td style="text-transform:uppercase;font-size:10px">${item.type}</td>
+          <td>${item.type === 'folder' ? 'Open' : 'Download'}</td>
         </tr>`;
       }).join('');
     }
@@ -949,23 +554,14 @@
   function navToFolder(key) { currentPath.push(key); renderDownloads(); }
   function navToIndex(i) { currentPath = currentPath.slice(0, i + 1); renderDownloads(); }
 
-  /* ---- Store ---- */
-  function notifyMe(btn) {
-    btn.textContent = '✓ Noted';
-    btn.style.color = '#777';
-    btn.style.borderColor = '#333';
-    btn.disabled = true;
-  }
+  function notifyMe(btn) { btn.textContent = '✓ Noted'; btn.style.color = '#777'; btn.style.borderColor = '#333'; btn.disabled = true; }
 
-  /* ---- Newsletter ---- */
   function handleNewsletter() {
     const email = document.getElementById('nl-email').value;
     if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
-    // ⚠️ Replace this with your actual Brevo form submission logic
-    alert('Thank you! You\'ll be notified when new music drops.');
+    alert("Thank you! You'll be notified when new music drops.");
     document.getElementById('nl-email').value = '';
   }
 </script>
-
 </body>
 </html>
